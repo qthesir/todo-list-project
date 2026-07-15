@@ -121,14 +121,7 @@ class TodoList {
   }
 
   findByTitle(title) {
-    let matchingTodo;
-    this.forEach((todo) => {
-      if (todo.getTitle() === title) {
-        matchingTodo = todo;
-      }
-    });
-
-    return matchingTodo;
+    return this.filter(todo => todo.getTitle() === title).first()
   }
 
   allDone() {
