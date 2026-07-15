@@ -114,76 +114,21 @@ class TodoList {
   }
 }
 
-let list = new TodoList("Today's Todos");
-console.log(list); // TodoList { title: "Today's Todos", todos: [] }
+// Omitted code
 
 let todo1 = new Todo("Buy milk");
 let todo2 = new Todo("Clean room");
 let todo3 = new Todo("Go to the gym");
 let todo4 = new Todo("Go shopping");
+let todo5 = new Todo("Feed the cats");
+let todo6 = new Todo("Study for Launch School");
+let list = new TodoList("Today's Todos");
 
 list.add(todo1);
 list.add(todo2);
 list.add(todo3);
 list.add(todo4);
-console.log(list);
-
-console.log(list.size()); // 4
-
-console.log(list.first());
-console.log(list.last());
-
-let emptyList = new TodoList("Empty List");
-console.log(emptyList.first());
-console.log(emptyList.last());
-
-console.log(list.itemAt(1));
-
-list.markDoneAt(1);
-console.log(list);
-
-list.markUndoneAt(1);
-console.log(list);
-
-console.log(list.isDone()); // false
-
-list.markDoneAt(0);
-list.markDoneAt(1);
-list.markDoneAt(2);
-list.markDoneAt(3);
-console.log(list.isDone()); // true
-
-list.markUndoneAt(2);
-console.log(list.isDone()); // false
-
-console.log(list.shift());
-console.log(list.pop());
-console.log(list);
-
-console.log(emptyList.shift());
-console.log(emptyList.pop());
-console.log(emptyList);
-
-// Omitted code
-
-// First, let's create some new todos.
-let todo5 = new Todo("Feed the cats");
-let todo6 = new Todo("Study for Launch School");
 list.add(todo5);
 list.add(todo6);
-console.log(list);
 
-console.log(list.removeAt(2));
-console.log(list.removeAt(0));
-console.log(list.removeAt(1));
-console.log(list);
-
-// Omitted code
-
-list.add(todo1);
-list.add(todo2);
-list.add(todo4);
-list.add(todo5);
-list.add(todo6);
-console.log(`${list}`);
-
+list.forEach(todo => console.log(todo.toString()));
