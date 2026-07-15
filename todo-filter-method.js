@@ -43,8 +43,8 @@ class TodoList {
 
   toString() {
     return this.todos.reduce((acc, cv) => {
-      return acc + `${cv} \n`
-    }, `--- ${this.title} --- \n`)
+      return acc + `${cv} \n`;
+    }, `--- ${this.title} --- \n`);
   }
 
   add(todo) {
@@ -87,39 +87,39 @@ class TodoList {
   }
 
   isDone() {
-    return this.todos.every(todo => todo.isDone())
+    return this.todos.every((todo) => todo.isDone());
   }
 
   shift() {
-    return this.todos.shift()
+    return this.todos.shift();
   }
 
   pop() {
-    return this.todos.pop()
+    return this.todos.pop();
   }
 
   removeAt(index) {
-    this._validateIndex(index)
-    return this.todos.splice(index, 1)
+    this._validateIndex(index);
+    return this.todos.splice(index, 1);
   }
 
   forEach(callback) {
-    for(let index = 0; index < this.todos.length; index++) {
-      callback(this.todos[index])
+    for (let index = 0; index < this.todos.length; index++) {
+      callback(this.todos[index]);
     }
   }
 
   filter(callback) {
-    let filteredTodos = []
-    this.forEach(todo => {
-      if(callback(todo)) {
-        filteredTodos.push(todo)
+    let filteredTodos = new TodoList(this.title);
+    this.forEach((todo) => {
+      if (callback(todo)) {
+        filteredTodos.add(todo);
       }
-    })
-    return filteredTodos
+    });
+
+    return filteredTodos;
   }
 }
-
 
 let todo1 = new Todo("Buy milk");
 let todo2 = new Todo("Clean room");
@@ -138,5 +138,7 @@ list.add(todo6);
 todo1.markDone();
 todo5.markDone();
 
-let doneTodos = list.filter(todo => todo.isDone());
+let doneTodos = list.filter((todo) => todo.isDone());
 console.log(doneTodos);
+
+console.log(list.filter((todo) => todo.isDone()).first());
