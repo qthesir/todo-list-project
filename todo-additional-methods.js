@@ -123,33 +123,74 @@ class TodoList {
   findByTitle(title) {
     let matchingTodo;
     this.forEach((todo) => {
-      if (todo.getTitle === title) {
+      if (todo.getTitle() === title) {
         matchingTodo = todo;
       }
     });
 
-    return todo1;
+    return matchingTodo;
+  }
+
+  allDone() {
+    return this.filter((todo) => todo.isDone());
+  }
+
+  allNotDone() {
+    return this.filter((todo) => !todo.isDone());
+  }
+
+  markDone(title) {
+    let todoToMark = this.findByTitle(title);
+    if (todoToMark) {
+      todoToMark.markDone();
+    }
+  }
+
+  markAllDone() {
+    this.forEach((todo) => {
+      todo.markDone();
+    });
+  }
+
+  markAllUndone() {
+    this.forEach((todo) => {
+      todo.markUndone();
+    });
+  }
+
+  toArray() {
+    return [...this.todos];
   }
 }
 
-let todo1 = new Todo("Buy milk");
-let todo2 = new Todo("Clean room");
-let todo3 = new Todo("Go to the gym");
-let todo4 = new Todo("Go shopping");
-let todo5 = new Todo("Feed the cats");
-let todo6 = new Todo("Study for Launch School");
-let list = new TodoList("Today's Todos");
+let todoList = new TodoList("Todays Todos");
+let todo1 = new Todo("Milk Collection");
+let todo2 = new Todo("Riot");
+let todo3 = new Todo("Make money");
 
-list.add(todo1);
-list.add(todo2);
-list.add(todo3);
-list.add(todo4);
-list.add(todo5);
-list.add(todo6);
+todoList.add(todo1);
+todoList.add(todo2);
+todoList.add(todo3);
+
+console.log(todoList.findByTitle("Milk Collection"));
+console.log(todoList.findByTitle("Riot"));
+console.log(todoList.findByTitle("Collect debt"));
+
 todo1.markDone();
-todo5.markDone();
+todo2.markDone();
 
-let doneTodos = list.filter((todo) => todo.isDone());
-console.log(doneTodos);
+console.log(todoList.allDone());
+console.log(todoList.allNotDone());
 
-console.log(list.filter((todo) => todo.isDone()).first());
+todoList.markDone("Make money")
+console.log(todoList)
+
+todoList.markAllUndone()
+console.log(todoList)
+
+todoList.markAllDone()
+console.log(todoList)
+
+
+
+console.log(todoList.toArray() === todoList.todos)
