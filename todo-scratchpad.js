@@ -45,6 +45,12 @@ class TodoList {
     this.todos = [];
   }
 
+  toString() {
+    return this.todos.reduce((acc, cv) => {
+      return acc + `${cv} \n`
+    }, `--- ${this.title} --- \n`)
+  }
+
   add(todo) {
     if (!(todo instanceof Todo)) {
       throw new TypeError("Value is not type Todo");
@@ -94,6 +100,11 @@ class TodoList {
 
   pop() {
     return this.todos.pop()
+  }
+
+  removeAt(index) {
+    this._validateIndex(index)
+    return this.todos.splice(index, 1)
   }
 }
 
@@ -146,3 +157,26 @@ console.log(list);
 console.log(emptyList.shift());
 console.log(emptyList.pop());
 console.log(emptyList);
+
+// Omitted code
+
+// First, let's create some new todos.
+let todo5 = new Todo("Feed the cats");
+let todo6 = new Todo("Study for Launch School");
+list.add(todo5);
+list.add(todo6);
+console.log(list);
+
+console.log(list.removeAt(2));
+console.log(list.removeAt(0));
+console.log(list.removeAt(1));
+console.log(list);
+
+// Omitted code
+
+list.add(todo1);
+list.add(todo2);
+list.add(todo4);
+list.add(todo5);
+list.add(todo6);
+console.log(`${list}`);
